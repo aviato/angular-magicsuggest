@@ -27,6 +27,9 @@ Directive implementation
 <magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors" />
 ```
 
+**Check the [demos wiki page](https://github.com/leonardochaia/angular-magicsuggest/wiki/Demos)**
+
+
 ---
 
 
