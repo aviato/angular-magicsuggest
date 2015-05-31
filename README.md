@@ -3,6 +3,7 @@
 An Angular directive for Nicolas Bize's [MagicSuggest](https://github.com/nicolasbize/magicsuggest)
 
 It's still in early development process. Defines a module that cointas a service that acts as MagicSuggest configuration objects dictionary, and a directive that makes use of the service to create MagicSuggest instances.
+#### [Demo](http://leonardochaia.github.io/angular-magicsuggest/)
 
 #### Dependecies
 * [jQuery](https://github.com/jquery/jquery)
