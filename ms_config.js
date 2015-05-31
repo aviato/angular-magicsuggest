@@ -1,4 +1,9 @@
 angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService) {
+    msSetupService.pushDefaultConfig({
+        loadingImageRenderer: function () {
+            return '<div class="text-center">Loading..</div>';
+        },
+    });
     msSetupService.pushConfig("testConfig", {
         data: [
             { id: 1, name: "Johnny Depp" },
