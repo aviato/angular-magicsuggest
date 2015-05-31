@@ -1,1 +1,115 @@
-"Working on the demo page" 
+﻿<!DOCTYPE html>
+
+<html lang="en" ng-app="demoApp">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <!--Bootstrap CSS-->
+    <link type="text/css" rel="stylesheet" href="Content/bootstrap.min.css" />
+    <!--MagicSuggest CSS-->
+    <link type="text/css" rel="stylesheet" href="Scripts/magic-suggest/magicsuggest.css" />
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <!--jQuery & AngularJs & Bootstrap-->
+    <script type="text/javascript" src="Scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/angular.min.js"></script>
+    <!--MagicSuggest Javascripts-->
+    <script type="text/javascript" src="Scripts/magic-suggest/magicsuggest.js"></script>
+    <!--Test angular-magicsuggest module-->
+    <script type="text/javascript" src="angular-magicsuggest.js"></script>
+
+    <!--Demo Only: MagicSuggest configuration module-->
+    <script type="text/javascript" src="ms_config.js"></script>
+    <!--Demo Only: test module-->
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+    <div class="col-lg-6 col-lg-offset-3">
+        <h1 class="text-center" style="margin-bottom:15px;">Angular MagicSuggest <small>Typescript</small></h1>
+        <!--Simple JSON Example-->
+        <div class="well">
+            <h4>Hardcodded array</h4>
+            <p>This example uses a hardcodded array in the setup configuration. Useful for enums, and constants.</p>
+            <p>
+                <magic-suggest type="testConfig" ng-model="test.config" placeholder="Famouse actors" />
+            </p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeTestConfig">Code</a>
+            </p>
+            <div class="collapse" id="codeTestConfig">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testConfig", {
+        data: [
+            { id: 1, name: "Johnny Depp" },
+            { id: 2, name: "Will Smith" },
+            { id: 3, name: "Al Pacino" },
+            { id: 4, name: "Morgan Freeman" },
+            { id: 5, name: "Christian Bale" },
+            { id: 6, name: "Robert Downey Jr." },
+            { id: 7, name: "Leonardo DiCaprio" },
+        ],
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testConfig" ng-model="test.config" placeholder="Famouse actors" /&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
+
+        <!--Google Geocoding API-->
+        <div class="well">
+            <h4>Google Geocoding api</h4>
+            <p>This example fetches data from the Google Geocoding API.</p>
+            <p>
+                <magic-suggest type="testExternalConfig" ng-model="test.external.config" placeholder="Type a street, like First Avenue" />
+            </p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeTestExternalConfig">Code</a>
+            </p>
+            <div class="collapse" id="codeTestExternalConfig">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testExternalConfig", {
+        data: 'http://maps.googleapis.com/maps/api/geocode/json',
+        method: 'GET',
+        queryParam: 'address',
+        renderer: (val) => {
+            return val.formatted_address;
+        },
+        selectionRenderer: (val) => {
+            return val.formatted_address;
+        },
+        valueField: 'place_id',
+        mode: 'remote',
+        useCommaKey: false,
+        resultsField: 'results',
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testExternalConfig" ng-model="test.external.config" 
+placeholder="Type a street, like First Avenue" /&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">
+                by Leonardo Chaia <br />
+                <a href="https://github.com/leonardochaia/" target="_blank">github.com/leonardochaia</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
