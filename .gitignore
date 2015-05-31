@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/demo/AngularMagicSuggest/app.js
+/demo/AngularMagicSuggest/ms_config.js
+/demo/AngularMagicSuggest/ms_config.js.map
