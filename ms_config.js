@@ -1,8 +1,9 @@
-angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService) {
+angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService, $timeout) {
     msSetupService.pushDefaultConfig({
         loadingImageRenderer: function () {
-            return '<div class="text-center">Loading..</div>';
+            return '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
         },
+        loadingImageSize: 60,
     });
     msSetupService.pushConfig("testConfig", {
         data: [
