@@ -3,13 +3,14 @@
 * and then just inject this whole module in your app.js
 */
 angular.module("msConfiguration", ['magicSuggest'])
-    .run(function (msSetupService: IMSSetupService) {
+    .run(function (msSetupService: IMSSetupService, $timeout: angular.ITimeoutService) {
 
     //This configuration object is added to every other object.
     msSetupService.pushDefaultConfig({
         loadingImageRenderer: () => {
-            return '<div class="text-center">Loading..</div>';
+            return '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
         },
+        loadingImageSize: 60,
     });
 
     msSetupService.pushConfig("testConfig", {
@@ -39,4 +40,5 @@ angular.module("msConfiguration", ['magicSuggest'])
         useCommaKey: false,
         resultsField: 'results',
     });
+
 });
