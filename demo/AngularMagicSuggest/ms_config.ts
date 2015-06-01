@@ -41,4 +41,12 @@ angular.module("msConfiguration", ['magicSuggest'])
         resultsField: 'results',
     });
 
+    msSetupService.pushConfig("testSingleSelection", {
+        data: [
+            { id: 1, name: "Ford" },
+            { id: 2, name: "Fiat" },
+            { id: 3, name: "Peugeot" },
+        ],
+        maxSelection: 1,
+    });
 });
