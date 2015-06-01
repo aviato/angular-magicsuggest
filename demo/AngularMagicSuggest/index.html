@@ -214,6 +214,93 @@
             </div>
         </div>
 
+        <!--Input Validity Example-->
+        <div class="well" style="margin-top:15px">
+            <h4><i class="glyphicon glyphicon-check"></i> Form Validity</h4>
+            <p>If you add a <code>required</code> attribute to the <code>magic-suggest</code> element, it will be flagged as invalid.</p>
+            <form name="testForm" role="form">
+                <p>
+                    <magic-suggest type="testConfig" ng-model="test.validityConfig" required="true" />
+                </p>
+            </form>
+            <p>
+                <small>ngModel: {{test.validityConfig ? (test.validityConfig | json) : 'undefined'}}</small>
+                <pre style="max-height:200px; overflow-y: auto">{{testForm | json}}</pre>
+            </p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeTestConfig">Code</a>
+            </p>
+            <div class="collapse" id="codeTestConfig">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testConfig", {
+        data: [
+            { id: 1, name: "Johnny Depp" },
+            { id: 2, name: "Will Smith" },
+            { id: 3, name: "Al Pacino" },
+            { id: 4, name: "Morgan Freeman" },
+            { id: 5, name: "Christian Bale" },
+            { id: 6, name: "Robert Downey Jr." },
+            { id: 7, name: "Leonardo DiCaprio" },
+        ],
+        placeholder: 'Famous actors',
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testConfig" ng-model="test.config" required="true"/&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
+
+        <!--Disabled Example-->
+        <div class="well" style="margin-top:15px">
+            <h4><i class="glyphicon glyphicon-remove"></i> Disabled</h4>
+            <p>You can se the element as disabled if you add the <code>disabled</code> attribute.</p>
+            <p>
+                <a href="" ng-click="cfgDisabled = !cfgDisabled" class="btn btn-sm btn-default">Toggle disabled</a>
+                <small>disabled: {{cfgDisabled === null || cfgDisabled === undefined ? 'undefined' : cfgDisabled}}</small>
+            </p>
+            <p>
+                <magic-suggest type="testConfig" ng-model="test.disabledConfig" disabled="cfgDisabled" />
+            </p>
+            <p>
+                <small>ngModel: {{test.disabledConfig ? (test.disabledConfig | json) : 'undefined'}}</small>
+            </p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeDisabledConfig">Code</a>
+            </p>
+            <div class="collapse" id="codeDisabledConfig">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testConfig", {
+        data: [
+            { id: 1, name: "Johnny Depp" },
+            { id: 2, name: "Will Smith" },
+            { id: 3, name: "Al Pacino" },
+            { id: 4, name: "Morgan Freeman" },
+            { id: 5, name: "Christian Bale" },
+            { id: 6, name: "Robert Downey Jr." },
+            { id: 7, name: "Leonardo DiCaprio" },
+        ],
+        placeholder: 'Famous actors',
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testConfig" ng-model="test.config" disabled="cfgDisabled" /&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
+
         <!--Facebook Comments-->
         <div class="well">
             <div class="fb-comments" data-href="http://leonardochaia.github.io/angular-magicsuggest/" data-numposts="5" data-colorscheme="light"></div>

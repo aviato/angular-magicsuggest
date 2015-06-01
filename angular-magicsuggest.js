@@ -78,7 +78,7 @@ angular.module("magicSuggest", [])
         scope: {
             value: '=ngModel',
             // mark the field as disabled
-            disabled: '=?ngDisabled',
+            disabled: '=?',
             //The type of configuration to use from msSetupService service
             type: '=',
             //If it's a required file, it will be flagged with $invalid
@@ -114,13 +114,20 @@ angular.module("magicSuggest", [])
                     throw ("Couldnt find configuration settings for key " + attrs.type);
                 }
                 //Take into account attributes.
-                scope.disabled = scope.disabled || false;
+                //scope.disabled = scope.disabled || false;
                 config.editable = !scope.disabled;
                 config.disabled = scope.disabled;
                 config.value = scope.value;
                 config.dataUrlParams = $.extend(config.dataUrlParams, scope.extraParams);
                 config.placeholder = scope.placeholder || config.placeholder;
                 config.maxSelection = config.maxSelection || 10;
+
+                //Handinlg the disabled parameter
+                if (attrs.disabled === 'false' || attrs.disabled === 'true') {
+                    config.disabled = attrs.disabled === 'true';
+                } else if (scope.disabled && typeof scope.disabled === 'boolean') {
+                    config.disabled = scope.disabled;
+                }
 
                 //Handinlg the hideTrigger parameter
                 if (attrs.hideTrigger === 'false' || attrs.hideTrigger === 'true') {
@@ -153,6 +160,17 @@ angular.module("magicSuggest", [])
                     ms.setDataUrlParams(scope.extraParams);
                 });
 
+                if (attrs.disabled != null & attrs.disabled != undefined) {
+                    scope.$watch(function () {
+                        return scope.disabled;
+                    }, function (newValue) {
+                        if (newValue === 'true' || newValue === 'false' || typeof newValue === 'boolean')
+                            if (newValue)
+                                ms.enable();
+                            else
+                                ms.disable();
+                    });
+                }
                 var expressionHandler = $parse(attrs.selectionChange);
                 //MagicSuggest Selection Change
                 $(ms).on('selectionchange', function (e, _ms, records) {
