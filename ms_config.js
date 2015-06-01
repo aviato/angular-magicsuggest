@@ -1,9 +1,4 @@
-/**
-* Demo module for configurations. You can define all configs here,
-* and then just inject this whole module in your app.js
-*/
 angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService, $timeout) {
-    //This configuration object is added to every other object.
     msSetupService.pushDefaultConfig({
         loadingImageRenderer: function () {
             return '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
@@ -20,6 +15,7 @@ angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService
             { id: 6, name: "Robert Downey Jr." },
             { id: 7, name: "Leonardo DiCaprio" },
         ],
+        placeholder: 'Famous actors',
     });
     msSetupService.pushConfig("testExternalConfig", {
         data: 'http://maps.googleapis.com/maps/api/geocode/json',
@@ -35,6 +31,7 @@ angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService
         mode: 'remote',
         useCommaKey: false,
         resultsField: 'results',
+        placeholder: 'Type a street, like First Avenue',
     });
     msSetupService.pushConfig("testSingleSelection", {
         data: [
@@ -43,6 +40,6 @@ angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService
             { id: 3, name: "Peugeot" },
         ],
         maxSelection: 1,
+        placeholder: 'Car Brands',
     });
 });
-//# sourceMappingURL=ms_config.js.map
