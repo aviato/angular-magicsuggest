@@ -217,7 +217,7 @@
         <!--Input Validity Example-->
         <div class="well" style="margin-top:15px">
             <h4><i class="glyphicon glyphicon-check"></i> Form Validity</h4>
-            <p>If you add a <code>required</code> attribute to the <code>magic-suggest</code> element, it will be flagged as invalid.</p>
+            <p>If you add a <code>required</code> attribute to the <code>magic-suggest</code> element, it will be flagged as invalid when empty.</p>
             <form name="testForm" role="form">
                 <p>
                     <magic-suggest type="testConfig" ng-model="test.validityConfig" required="true" />
@@ -228,9 +228,9 @@
                 <pre style="max-height:200px; overflow-y: auto">{{testForm | json}}</pre>
             </p>
             <p>
-                <a href="" data-toggle="collapse" data-target="#codeTestConfig">Code</a>
+                <a href="" data-toggle="collapse" data-target="#codeValidityConfig">Code</a>
             </p>
-            <div class="collapse" id="codeTestConfig">
+            <div class="collapse" id="codeValidityConfig">
                 <p>
                     Setup configuration declaration
                     <code>
