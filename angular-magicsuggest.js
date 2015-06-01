@@ -89,8 +89,10 @@ angular.module("magicSuggest", [])
             msInstance: '=?',
             //An object that will be sent with the Ajax Request.
             extraParams: '=?',
-            //Placeholder, overrides the setup config type.
+            //Placeholder, overrides the setup config parameter.
             placeholder: '@',
+            //HideTrigger, overrides the setup config parameter
+            hideTrigger: '=?',
         },
         require: 'ngModel',
         compile: function (element, attrs) {
@@ -117,6 +119,13 @@ angular.module("magicSuggest", [])
                 config.dataUrlParams = $.extend(config.dataUrlParams, scope.extraParams);
                 config.placeholder = scope.placeholder || config.placeholder;
                 config.maxSelection = config.maxSelection || 10;
+
+                //Handinlg the hideTrigger parameter
+                if (attrs.hideTrigger === 'false' || attrs.hideTrigger === 'true') {
+                    config.hideTrigger = attrs.hideTrigger === 'true';
+                } else if (scope.hideTrigger && typeof scope.hideTrigger === 'boolean') {
+                    config.hideTrigger = scope.hideTrigger;
+                }
 
                 //Create the MagicSuggest Instance
                 var ms = $(element).magicSuggest(config);

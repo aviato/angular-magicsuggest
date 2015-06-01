@@ -23,6 +23,7 @@ angular.module("msConfiguration", ['magicSuggest'])
             { id: 6, name: "Robert Downey Jr." },
             { id: 7, name: "Leonardo DiCaprio" },
         ],
+        placeholder: 'Famous actors',
     });
 
     msSetupService.pushConfig("testExternalConfig", {
@@ -39,6 +40,7 @@ angular.module("msConfiguration", ['magicSuggest'])
         mode: 'remote',
         useCommaKey: false,
         resultsField: 'results',
+        placeholder: 'Type a street, like First Avenue',
     });
 
     msSetupService.pushConfig("testSingleSelection", {
@@ -48,5 +50,6 @@ angular.module("msConfiguration", ['magicSuggest'])
             { id: 3, name: "Peugeot" },
         ],
         maxSelection: 1,
+        placeholder: 'Car Brands',
     });
 });

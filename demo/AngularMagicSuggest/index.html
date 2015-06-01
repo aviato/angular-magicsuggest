@@ -59,7 +59,7 @@
             <h4><i class="glyphicon glyphicon-th-list"></i> Hardcodded array</h4>
             <p>This example uses a hardcodded array in the setup configuration. Useful for enums, and constants.</p>
             <p>
-                <magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors" />
+                <magic-suggest type="testConfig" ng-model="test.config" />
             </p>
             <p><small>ngModel: {{test.config ? (test.config | json) : 'undefined'}}</small></p>
             <p>
@@ -79,13 +79,14 @@
             { id: 6, name: "Robert Downey Jr." },
             { id: 7, name: "Leonardo DiCaprio" },
         ],
+        placeholder: 'Famous actors',
     });</pre>
                     </code>
                 </p>
                 <p>
                     Directive implementation
                     <code ng-non-bindable>
-<pre>&lt;magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors" /&gt;</pre>
+<pre>&lt;magic-suggest type="testConfig" ng-model="test.config"/&gt;</pre>
                     </code>
                 </p>
             </div>
@@ -96,7 +97,7 @@
             <h4><i class="glyphicon glyphicon-map-marker"></i> Google Geocoding api</h4>
             <p>This example fetches data from the Google Geocoding API.</p>
             <p>
-                <magic-suggest type="testExternalConfig" ng-model="test.external.config" placeholder="Type a street, like First Avenue" />
+                <magic-suggest type="testExternalConfig" ng-model="test.external.config" />
             </p>
             <p>
                 <a href="" data-toggle="collapse" data-target="#codeTestExternalConfig">Code</a>
@@ -119,14 +120,14 @@
         mode: 'remote',
         useCommaKey: false,
         resultsField: 'results',
+        placeholder: 'Type a street, like First Avenue',
     });</pre>
                     </code>
                 </p>
                 <p>
                     Directive implementation
                     <code ng-non-bindable>
-<pre>&lt;magic-suggest type="testExternalConfig" ng-model="test.external.config" 
-placeholder="Type a street, like First Avenue" /&gt;</pre>
+<pre>&lt;magic-suggest type="testExternalConfig" ng-model="test.external.config" /&gt;</pre>
                     </code>
                 </p>
             </div>
@@ -137,7 +138,7 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
             <h4><i class="glyphicon glyphicon-modal-window"></i> maxSelection: 1</h4>
             <p>If you set <code>maxSelection</code> to one, the directive will set the <code>ngModel</code> value to an object, instead of an array.</p>
             <p>
-                <magic-suggest type="testSingleSelection" ng-model="test.singleSelection" placeholder="Car Brands" />
+                <magic-suggest type="testSingleSelection" ng-model="test.singleSelection" />
             </p>
             <p><small>ngModel: {{test.singleSelection ? (test.singleSelection | json) : 'undefined'}}</small></p>
             <p>
@@ -154,19 +155,64 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
             { id: 3, name: "Peugeot" },
         ],
         maxSelection: 1,
+        placeholder: 'Car Brands',
     });</pre>
                     </code>
                 </p>
                 <p>
                     Directive implementation
                     <code ng-non-bindable>
-<pre>&lt;magic-suggest type="testSingleSelection" ng-model="test.singleSelection" placeholder="Car Brands" /&gt;</pre>
+<pre>&lt;magic-suggest type="testSingleSelection" ng-model="test.singleSelection"/&gt;</pre>
                     </code>
                 </p>
             </div>
         </div>
 
-
+        <!--Attribute params Example-->
+        <div class="well" style="margin-top:15px">
+            <h4><i class="glyphicon glyphicon-cog"></i> Overriding parameters</h4>
+            <p>
+                <code>Default parameters</code> are overriden by <code>type parameters</code>, type parameters are overriden by <code>attribute parameters</code>. <br />
+                You can declare attribute parameters, by adding them as atributes to your <code>magic-suggest</code> element.
+            </p>
+            <p>
+                <magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors overriden" hide-trigger="true" expand-on-focus="true" />
+            </p>
+            <p>
+                Note the added attributes. The type configuration <code>placeholder</code> is overriden by the attribute parameter. <br />
+                Since the <code>hideTrigger</code> parameter does not exist in the configuration object, it's added only to that instance. <br />
+                The same for the <code>expandOnFocus</code>, it's added only to that instance.
+            </p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeTestAttrParams">Code</a>
+            </p>
+            <div class="collapse" id="codeTestAttrParams">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testConfig", {
+        data: [
+            { id: 1, name: "Johnny Depp" },
+            { id: 2, name: "Will Smith" },
+            { id: 3, name: "Al Pacino" },
+            { id: 4, name: "Morgan Freeman" },
+            { id: 5, name: "Christian Bale" },
+            { id: 6, name: "Robert Downey Jr." },
+            { id: 7, name: "Leonardo DiCaprio" },
+        ],
+        placeholder: 'Famous actors',
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors overriden"
+    hide-trigger="true" expand-on-focus="true" /&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
 
         <!--Facebook Comments-->
         <div class="well">
