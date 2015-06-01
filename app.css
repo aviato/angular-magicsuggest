@@ -24,7 +24,7 @@ body {
 }
 
 
-
+/* Loading from http://tobiasahlin.com/spinkit/ */
 .spinner {
     margin: 10px auto;
     width: 50px;
@@ -82,4 +82,10 @@ body {
         transform: scaleY(1.0);
         -webkit-transform: scaleY(1.0);
     }
+}
+
+
+/* Facebook Comments full width */
+#fbcomments, .fb-comments, .fb-comments iframe[style], .fb-comments span {
+    width: 100% !important;
 }

@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="fb-root"></div>
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-6 col-lg-offset-3" style="margin-bottom:60px">
         <div class="col-lg-12 text-right" style="padding-top: 5px;">
             <div class="fb-like" data-href="http://leonardochaia.github.io/angular-magicsuggest/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
             <a href="https://github.com/leonardochaia/angular-magicsuggest" target="_blank">Github Repo</a>
@@ -33,7 +33,7 @@
         <h1 class="text-center" style="margin-bottom:20px;">Angular MagicSuggest <small>Typescript</small></h1>
         <p>
             This is the published version of the Typescript demo project in the <code>development</code> branch. It shows a couple of examples and their code.<br />
-            <small>Please note that this demo is using an extended version of the <a href="nicolasbize.com/magicsuggest/" target="_blank">magicsuggest.js</a> library by Nicolas Bize, that doesn't mean it won't work on the unmodified version.</small>
+            <small>Please note that this demo is using an extended version of the <a href="http://nicolasbize.com/magicsuggest/" target="_blank">magicsuggest.js</a> library by Nicolas Bize, that doesn't mean it won't work on the unmodified version.</small>
         </p>
 
         <div class="well">
@@ -127,6 +127,10 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
                 </p>
             </div>
         </div>
+        <!--Facebook Comments-->
+        <div class="well">
+            <div class="fb-comments" data-href="http://leonardochaia.github.io/angular-magicsuggest/" data-numposts="5" data-colorscheme="light"></div>
+        </div>
     </div>
     <footer class="footer">
         <div class="container">
@@ -142,7 +146,7 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
             js.async = true;
-            js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.3&appId=442069945855197";
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=442069945855197";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 </body>
