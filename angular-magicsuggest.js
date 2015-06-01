@@ -59,6 +59,19 @@ angular.module("magicSuggest", [])
             }
         }
     };
+    //Watch the value. If it changes, apply it to MS.
+    var startWatchingValue = function (scope, ms) {
+        return scope.$watch(function () {
+            return scope.value;
+        }, function () {
+            if (scope.value != ms.getSelection()) {
+                if (scope.value || (scope.value && scope.value.length > 0))
+                    ms.setSelection(scope.value, true);
+                else
+                    ms.clear(true);
+            }
+        });
+    };
     return {
         restrict: 'E',
         replace: true,
@@ -76,6 +89,7 @@ angular.module("magicSuggest", [])
             msInstance: '=?',
             //An object that will be sent with the Ajax Request.
             extraParams: '=?',
+            //Placeholder, overrides the setup config type.
             placeholder: '@',
         },
         require: 'ngModel',
@@ -102,6 +116,7 @@ angular.module("magicSuggest", [])
                 config.value = scope.value;
                 config.dataUrlParams = $.extend(config.dataUrlParams, scope.extraParams);
                 config.placeholder = scope.placeholder || config.placeholder;
+                config.maxSelection = config.maxSelection || 10;
 
                 //Create the MagicSuggest Instance
                 var ms = $(element).magicSuggest(config);
@@ -110,14 +125,8 @@ angular.module("magicSuggest", [])
                 if (scope.value)
                     ms.setSelection(scope.value);
 
-                //Watch the value. If it changes, apply it to MS.
-                scope.$watch(function () {
-                    return scope.value;
-                }, function () {
-                    if (scope.value && scope.value != ms.getSelection()) {
-                        ms.setSelection(scope.value, true);
-                    }
-                });
+                //Start watching the value, and save the deregister method.
+                var stopWatchingValue = startWatchingValue(scope, ms);
 
                 //Also watch extraParams.
                 scope.$watch(function () {
@@ -127,16 +136,23 @@ angular.module("magicSuggest", [])
                 });
 
                 var expressionHandler = $parse(attrs.selectionChange);
-                //Selection Change
-                $(ms).on('selectionchange', function (e, ms, records) {
+                //MagicSuggest Selection Change
+                $(ms).on('selectionchange', function (e, _ms, records) {
+                    stopWatchingValue();
                     safeApply(scope, function () {
-                        scope.value = ms.getSelection();
+                        if (config.maxSelection > 1)
+                            controller.$setViewValue(ms.getSelection());
+                        else if (ms.getSelection() && ms.getSelection().length != 0)
+                            controller.$setViewValue(ms.getSelection()[0]);
+                        else
+                            controller.$setViewValue(undefined);
+
                         if (attrs.required)
-                            if (scope.value.length > 0)
+                            if (controller.$getViewValue().length > 0)
                                 controller.$setValidity("required", true);
                             else
                                 controller.$setValidity("required", false);
-                        //Manually set the element dirty
+                        //Manually set the controller dirty
                         controller.$setDirty();
                         if (expressionHandler) {
                             //If there's an event binded fire it up!
@@ -145,6 +161,8 @@ angular.module("magicSuggest", [])
                         //else
                         //    console.error(typeof scope.selectionChange);
                     });
+                    //Update the value deregister method.
+                    stopWatchingValue = startWatchingValue(scope, ms);
                 });
             };
         }

@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <title>angular-magicsuggest by leonardochaia</title>
+    <!--Favicon From http://www.favicon.cc/?action=icon&file_id=796383 -->
+    <link rel="shortcut icon" href="Resources/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="Resources/favicon.ico" type="image/x-icon">
     <!--Bootstrap CSS-->
     <link type="text/css" rel="stylesheet" href="Content/bootstrap.min.css" />
     <!--MagicSuggest CSS-->
@@ -58,6 +61,7 @@
             <p>
                 <magic-suggest type="testConfig" ng-model="test.config" placeholder="Famous actors" />
             </p>
+            <p><small>ngModel: {{test.config ? (test.config | json) : 'undefined'}}</small></p>
             <p>
                 <a href="" data-toggle="collapse" data-target="#codeTestConfig">Code</a>
             </p>
@@ -127,6 +131,43 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
                 </p>
             </div>
         </div>
+
+        <!--Single Selection Example-->
+        <div class="well" style="margin-top:15px">
+            <h4><i class="glyphicon glyphicon-modal-window"></i> maxSelection: 1</h4>
+            <p>If you set <code>maxSelection</code> to one, the directive will set the <code>ngModel</code> value to an object, instead of an array.</p>
+            <p>
+                <magic-suggest type="testSingleSelection" ng-model="test.singleSelection" placeholder="Car Brands" />
+            </p>
+            <p><small>ngModel: {{test.singleSelection ? (test.singleSelection | json) : 'undefined'}}</small></p>
+            <p>
+                <a href="" data-toggle="collapse" data-target="#codeTestSingleSelection">Code</a>
+            </p>
+            <div class="collapse" id="codeTestSingleSelection">
+                <p>
+                    Setup configuration declaration
+                    <code>
+<pre>msSetupService.pushConfig("testSingleSelection", {
+        data: [
+            { id: 1, name: "Ford" },
+            { id: 2, name: "Fiat" },
+            { id: 3, name: "Peugeot" },
+        ],
+        maxSelection: 1,
+    });</pre>
+                    </code>
+                </p>
+                <p>
+                    Directive implementation
+                    <code ng-non-bindable>
+<pre>&lt;magic-suggest type="testSingleSelection" ng-model="test.singleSelection" placeholder="Car Brands" /&gt;</pre>
+                    </code>
+                </p>
+            </div>
+        </div>
+
+
+
         <!--Facebook Comments-->
         <div class="well">
             <div class="fb-comments" data-href="http://leonardochaia.github.io/angular-magicsuggest/" data-numposts="5" data-colorscheme="light"></div>

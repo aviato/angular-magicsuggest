@@ -1,4 +1,9 @@
+/**
+* Demo module for configurations. You can define all configs here,
+* and then just inject this whole module in your app.js
+*/
 angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService, $timeout) {
+    //This configuration object is added to every other object.
     msSetupService.pushDefaultConfig({
         loadingImageRenderer: function () {
             return '<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>';
@@ -31,4 +36,13 @@ angular.module("msConfiguration", ['magicSuggest']).run(function (msSetupService
         useCommaKey: false,
         resultsField: 'results',
     });
+    msSetupService.pushConfig("testSingleSelection", {
+        data: [
+            { id: 1, name: "Ford" },
+            { id: 2, name: "Fiat" },
+            { id: 3, name: "Peugeot" },
+        ],
+        maxSelection: 1,
+    });
 });
+//# sourceMappingURL=ms_config.js.map
