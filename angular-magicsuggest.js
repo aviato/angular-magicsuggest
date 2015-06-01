@@ -93,6 +93,8 @@ angular.module("magicSuggest", [])
             placeholder: '@',
             //HideTrigger, overrides the setup config parameter
             hideTrigger: '=?',
+            //expandOnFocus, overrides the setup config parameter
+            expandOnFocus: '=?',
         },
         require: 'ngModel',
         compile: function (element, attrs) {
@@ -125,6 +127,13 @@ angular.module("magicSuggest", [])
                     config.hideTrigger = attrs.hideTrigger === 'true';
                 } else if (scope.hideTrigger && typeof scope.hideTrigger === 'boolean') {
                     config.hideTrigger = scope.hideTrigger;
+                }
+
+                //Handinlg the expandOnFocus parameter
+                if (attrs.expandOnFocus === 'false' || attrs.expandOnFocus === 'true') {
+                    config.expandOnFocus = attrs.expandOnFocus === 'true';
+                } else if (scope.expandOnFocus && typeof scope.expandOnFocus === 'boolean') {
+                    config.expandOnFocus = scope.expandOnFocus;
                 }
 
                 //Create the MagicSuggest Instance
