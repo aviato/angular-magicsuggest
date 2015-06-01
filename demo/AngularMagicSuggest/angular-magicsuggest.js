@@ -166,7 +166,7 @@ angular.module("magicSuggest", [])
                             controller.$setViewValue(undefined);
 
                         if (attrs.required)
-                            if (controller.$getViewValue().length > 0)
+                            if (controller.$viewValue.length > 0)
                                 controller.$setValidity("required", true);
                             else
                                 controller.$setValidity("required", false);
