@@ -181,14 +181,22 @@ placeholder="Type a street, like First Avenue" /&gt;</pre>
             </p>
         </div>
     </footer>
+    <!--Facebook SDK-->
     <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1669710619917392',
+                xfbml: true,
+                version: 'v2.3'
+            });
+        };
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
-            js.async = true;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=442069945855197";
+            js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>
