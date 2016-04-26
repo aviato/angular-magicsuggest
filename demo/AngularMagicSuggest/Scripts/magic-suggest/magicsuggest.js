@@ -675,7 +675,7 @@
             /*
             * Determines whether the combobox can be expanded. CUSTOMIZATION
             */
-            _canExand: function () {//CUSTOMIZATION: This whole function was added
+            _canExpand: function () {//CUSTOMIZATION: This whole function was added
                 return (ms.isDisabled() === false && !(cfg.expandOnFocus === true && _selection.length === cfg.maxSelection) || (cfg.expandOnFocus === true && cfg.maxSelection == 1));
             },
 
@@ -1371,7 +1371,7 @@
              * @private
              */
             _onInputFocus: function () {
-                if (ms.isDisabled() === false && !_hasFocus && this._canExand()) { //CUSTOMIZATION: Can Expand ! 
+                if (ms.isDisabled() === false && !_hasFocus && this._canExpand()) { //CUSTOMIZATION: Can Expand ! 
                     _hasFocus = true;
                     ms.container.addClass('ms-ctn-focus');
                     ms.container.removeClass(cfg.invalidCls);
@@ -1555,7 +1555,7 @@
              * @private
              */
             _onTriggerClick: function () {
-                if (this._canExand() && ms.isDisabled() === false) { //CUSTOMIZED: Implement _CanExpand and disabled validation
+                if (this._canExpand() && ms.isDisabled() === false) { //CUSTOMIZED: Implement _CanExpand and disabled validation
                     $(ms).trigger('triggerclick', [ms]);
                     if (cfg.expanded === true) {
                         ms.collapse();
